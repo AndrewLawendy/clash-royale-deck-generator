@@ -1,13 +1,17 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import store from './store/store';
+
+import App from './components/App';
 
 import './scss/main.scss';
 
-const title = 'React with Webpack and Babel';
-
 ReactDOM.render(
-  <div>{title}</div>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app'),
 );
 

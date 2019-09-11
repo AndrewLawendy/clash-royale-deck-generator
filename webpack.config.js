@@ -31,10 +31,6 @@ module.exports = {
                 exclude: /node_modules/,
                 use: "babel-loader"
             },
-            // {
-            //     test: /\.(s*)css$/,
-            //     use: ['style-loader', 'css-loader', 'sass-loader']
-            // },
             {
                 test: /\.(s*)css$/,
                 use: [
@@ -62,6 +58,26 @@ module.exports = {
                     }
                 ]
             },
+            {
+                test: /\.(ttf|eot|woff|woff2)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "fonts/[name].[ext]",
+                    },
+                },
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg|ico)$/i,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            outputPath: "assets/"
+                        }
+                    }
+                ]
+            }
         ]
     },
     resolve: {
