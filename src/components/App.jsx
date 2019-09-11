@@ -1,8 +1,9 @@
 import React from 'react';
+import Deck from './Deck';
 
 function App() {
   return (
-    <h1>App is active</h1>
+    <Deck />
   );
 }
 
