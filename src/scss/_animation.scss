@@ -12,10 +12,32 @@
     0%,86%,100%{
         transform: rotate(0)
     }
-    87%,89%,91%,93%,95%,97%,99%{
+    87%,89%,91%,93%,95%,97%,99%
+    {
         transform: rotate($deg)
     }
     88%,90%,92%,94%,96%,98%{
         transform: rotate(-$deg)
+    }
+}
+
+
+@keyframes fade-in{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes slide-down{
+    from{
+        opacity: 0;
+        transform: translate3d(0,-20px,0)
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0,0,0)
     }
 }

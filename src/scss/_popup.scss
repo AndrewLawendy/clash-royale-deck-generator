@@ -1,0 +1,22 @@
+#popup-bg {
+    @include initPos(fixed, true);
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in .3s;
+
+    #popup-container {
+        max-width: 70%;
+        min-width: 700px;
+        background-color: #fff;
+        border-radius: 7px;
+        padding: 15px;
+        opacity: 0;
+        animation: slide-down 0.4s .2s forwards;
+
+        #popup-close{
+            float: right;
+        }
+    }
+}

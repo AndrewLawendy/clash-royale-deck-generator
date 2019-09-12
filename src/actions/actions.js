@@ -5,4 +5,14 @@ export const genRandom = (random) => ({
   payload: random,
 });
 
-export const test = '';
+export const selectCard = (card) => ({
+  type: constants.SELECT_CARD,
+  payload: card,
+});
+
+export const togglePopup = (show, component) => ({
+  type: constants.POPUP_TOGGLE,
+  payload: {
+    show, component,
+  },
+});

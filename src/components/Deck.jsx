@@ -2,12 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Card from './Card';
+import PopUp from './PopUp';
 import { genRandom } from '../actions/actions';
 import elixirPng from '../assets/elixir.png';
 
 const mapStateToProps = (state) => {
   const { randomDeck } = state.randomReducer;
-  return { randomDeck };
+  const { popupShow } = state.commonReducer;
+  return { randomDeck, popupShow };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -38,8 +41,8 @@ class Deck extends Component {
 
   followingDeck(e) {
     const middleWidth = window.innerWidth / 2;
-    const rotateY = (e.clientX - middleWidth) / 160;
-    const rotateX = (e.clientY - (window.innerHeight / 2)) / 140;
+    const rotateY = (e.clientX - middleWidth) / 200;
+    const rotateX = (e.clientY - (window.innerHeight / 2)) / 180;
     const reflectionX = ((e.clientX - middleWidth) / 50);
     this.setState(() => ({
       deckRotationX: rotateX,
@@ -56,10 +59,9 @@ class Deck extends Component {
         gen(res);
       });
   }
-  /* eslint no-underscore-dangle: [2, { "allow": ["_id"] }] */
 
   render() {
-    const { randomDeck } = this.props;
+    const { randomDeck, popupShow } = this.props;
     const { deckRotationX, deckRotationY, reflectionX } = this.state;
     const deckRotation = {
       transform: `rotateX(${deckRotationX}deg)
@@ -70,18 +72,7 @@ class Deck extends Component {
     };
     const averageElixir = (randomDeck.reduce((acc, curr) => acc + curr.elixirCost, 0) / 8).toFixed(1);
 
-    const checkLevel = (rarity) => {
-      switch (rarity) {
-        case 'Common':
-          return 1;
-        case 'Rare':
-          return 3;
-        case 'Epic':
-          return 6;
-        default:
-          return 9;
-      }
-    };
+    /* eslint no-underscore-dangle: [2, { "allow": ["_id"] }] */
 
     return (
       <div id="deck-ctrl">
@@ -90,20 +81,7 @@ class Deck extends Component {
           <h2 className="text-white text-border">Royal Clash</h2>
           <ul id="cards">
             {randomDeck.map((card) => (
-              <li key={card._id}>
-                <img
-                  className="card-img"
-                  src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
-                  alt={card.name}
-                />
-                <span className="card-elixir-cost">
-                  <img src={elixirPng} alt="Elixir" />
-                  <span>{card.elixirCost}</span>
-                </span>
-                <span className="card-lvl text-center text-border">
-                  {`Level ${checkLevel(card.rarity)}`}
-                </span>
-              </li>
+              <Card card={card} key={card._id} />
             ))}
           </ul>
           <p id="elixir-cost" className="text-violet text-border text-center">
@@ -119,14 +97,16 @@ class Deck extends Component {
         >
           Generate
         </button>
+        { popupShow && <PopUp />}
       </div>
     );
   }
 }
 
 Deck.propTypes = {
-  randomDeck: PropTypes.shape([]).isRequired,
+  randomDeck: PropTypes.oneOfType([PropTypes.array]).isRequired,
   gen: PropTypes.func.isRequired,
+  popupShow: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Deck);
