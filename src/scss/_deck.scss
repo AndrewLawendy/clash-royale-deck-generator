@@ -12,16 +12,35 @@
         width: 747px;
         height: 664px;
         background: url("../assets/deck-bg.jpg") no-repeat;
-        border-radius: 5px;
+        border-radius: 14px;
         padding: 21px 53px;
         box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        overflow: hidden;
+
+        #deck-reflection{
+            position: absolute;
+            top:0;
+            left: -120px;
+            height: 100%;
+            width: 60%;
+            background-color: rgba(255,255,255,.07);
+            transform: skewX(10deg);
+            z-index: -1;
+        }
 
         h2,
         #elixir-cost {
             padding: 0 12px;
+
+            img {
+                height: 52px;
+                margin-left: 12px;
+                margin-bottom: -18px;
+                animation: attention-rotation 10s infinite;
+            }
         }
 
         #cards {
@@ -31,11 +50,67 @@
             grid-gap: 30px 12px;
 
             li {
+                position: relative;
+                cursor: pointer;
+                transition: transform .3s;
 
-                img {
+                .card-img {
                     width: 100%;
                 }
+
+                .card-elixir-cost {
+                    $img-width: 32px;
+                    position: absolute;
+                    top: -$img-width/4;
+                    left: -$img-width/4;
+
+                    img {
+                        width: $img-width;
+                    }
+
+                    span {
+                        color: #fff;
+                        @include initPos(absolute, true);
+                        text-align: center;
+                        line-height: $img-width+5;
+                    }
+                }
+
+                .card-lvl{
+                    $bbr: 12px;
+                    position: absolute;
+                    left: 0;
+                    bottom: 24px;
+                    width:100%;
+                    color: lighten($blue,10);
+                    padding: 15px 5px;
+                    background-color: rgba(0,0,0,.6);
+                    border-bottom-right-radius: $bbr;
+                    border-bottom-left-radius: $bbr;
+                }
+
+                &:hover{
+                    transform: scale3d(1.02,1.02,1)
+                }
             }
+        }
+    }
+
+    #generate-random {
+        position: relative;
+        background-color: $yellow;
+        padding: 15px 20px;
+        letter-spacing: 2px;
+        border-radius: 5px;
+        box-shadow: inset -5px -4px 6px rgba(0, 0, 0, .7), 4px 4px 5px #000;
+        transition: all .3s;
+
+        &:hover {
+            background-color: darken($yellow, 10);
+        }
+
+        &:active {
+            background-color: darken($yellow, 20);
         }
     }
 }

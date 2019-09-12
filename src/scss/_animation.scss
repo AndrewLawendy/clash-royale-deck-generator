@@ -6,3 +6,16 @@
         opacity: .3;
     }
 }
+
+@keyframes attention-rotation{
+    $deg:12deg;
+    0%,86%,100%{
+        transform: rotate(0)
+    }
+    87%,89%,91%,93%,95%,97%,99%{
+        transform: rotate($deg)
+    }
+    88%,90%,92%,94%,96%,98%{
+        transform: rotate(-$deg)
+    }
+}

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { genRandom } from '../actions/actions';
+import elixirPng from '../assets/elixir.png';
 
 const mapStateToProps = (state) => {
   const { randomDeck } = state.randomReducer;
@@ -23,6 +24,7 @@ class Deck extends Component {
     this.state = {
       deckRotationX: 0,
       deckRotationY: 0,
+      reflectionX: 0,
     };
   }
 
@@ -35,11 +37,14 @@ class Deck extends Component {
   }
 
   followingDeck(e) {
-    const rotateY = (e.clientX - (window.innerWidth / 2)) / 160;
+    const middleWidth = window.innerWidth / 2;
+    const rotateY = (e.clientX - middleWidth) / 160;
     const rotateX = (e.clientY - (window.innerHeight / 2)) / 140;
+    const reflectionX = ((e.clientX - middleWidth) / 50);
     this.setState(() => ({
       deckRotationX: rotateX,
       deckRotationY: rotateY,
+      reflectionX,
     }));
   }
 
@@ -55,28 +60,62 @@ class Deck extends Component {
 
   render() {
     const { randomDeck } = this.props;
-    const { deckRotationX, deckRotationY } = this.state;
+    const { deckRotationX, deckRotationY, reflectionX } = this.state;
     const deckRotation = {
-      transform: `rotateX(${deckRotationX}deg) rotateY(${deckRotationY}deg)`,
+      transform: `rotateX(${deckRotationX}deg)
+       rotateY(${deckRotationY}deg)`,
     };
+    const reflectionXLeft = {
+      left: reflectionX - 120,
+    };
+    const averageElixir = (randomDeck.reduce((acc, curr) => acc + curr.elixirCost, 0) / 8).toFixed(1);
+
+    const checkLevel = (rarity) => {
+      switch (rarity) {
+        case 'Common':
+          return 1;
+        case 'Rare':
+          return 3;
+        case 'Epic':
+          return 6;
+        default:
+          return 9;
+      }
+    };
+
     return (
       <div id="deck-ctrl">
         <div id="deck" style={deckRotation}>
+          <div id="deck-reflection" style={reflectionXLeft} />
           <h2 className="text-white text-border">Royal Clash</h2>
           <ul id="cards">
             {randomDeck.map((card) => (
               <li key={card._id}>
-                <img src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`} alt={card.name} />
+                <img
+                  className="card-img"
+                  src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
+                  alt={card.name}
+                />
+                <span className="card-elixir-cost">
+                  <img src={elixirPng} alt="Elixir" />
+                  <span>{card.elixirCost}</span>
+                </span>
+                <span className="card-lvl text-center text-border">
+                  {`Level ${checkLevel(card.rarity)}`}
+                </span>
               </li>
             ))}
           </ul>
           <p id="elixir-cost" className="text-violet text-border text-center">
-            Average Elixir cost: 4.0
+            {`Average Elixir cost: ${averageElixir}`}
+            <img src={elixirPng} alt="Elixir" className={randomDeck.length ? 'btn-pointer' : ''} />
           </p>
         </div>
         <button
           type="button"
           onClick={this.generateRandomDeck}
+          id="generate-random"
+          className="text-white"
         >
           Generate
         </button>
