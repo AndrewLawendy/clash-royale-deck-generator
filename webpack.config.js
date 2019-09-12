@@ -63,7 +63,7 @@ module.exports = {
                 use: {
                     loader: "file-loader",
                     options: {
-                        name: "fonts/[name].[ext]",
+                        name: '[path][name].[ext]',
                     },
                 },
             },
@@ -73,8 +73,19 @@ module.exports = {
                     {
                         loader: "file-loader",
                         options: {
-                            outputPath: "assets/"
-                        }
+                            name: '[path][name].[ext]',
+                        },
+                    }
+                ]
+            },
+            {
+                test: /\.(ogg|mp3|wav|mpe?g)$/i,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: '[path][name].[ext]',
+                        },
                     }
                 ]
             }

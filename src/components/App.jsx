@@ -3,7 +3,10 @@ import Deck from './Deck';
 
 function App() {
   return (
-    <Deck />
+    <div>
+      <div id="main-gradient" />
+      <Deck />
+    </div>
   );
 }
 
