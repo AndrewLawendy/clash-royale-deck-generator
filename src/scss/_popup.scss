@@ -4,11 +4,9 @@
     justify-content: center;
     align-items: flex-start;
     padding: 40px 0;
-    overflow-x: hidden;
-    overflow-y: auto;
 
     #popup-bg {
-        @include initPos(fixed, true);
+        @include initPos(absolute, true);
         background-color: rgba(0, 0, 0, 0.6);
         z-index: -1;
         opacity: 1;

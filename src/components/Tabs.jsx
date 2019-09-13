@@ -27,7 +27,7 @@ class Tabs extends Component {
             <li
               className={`tab-title ${activeIndex === index ? 'active' : ''}`}
               key={`${tab}-${Math.random()}`}
-              onClick={() => this.setActiveIndex(index)}
+              onClick={() => (activeIndex !== index ? this.setActiveIndex(index) : '')}
               role="presentation"
             >
               {tab}
