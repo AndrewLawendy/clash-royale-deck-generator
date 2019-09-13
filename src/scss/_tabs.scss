@@ -1,0 +1,13 @@
+.tabs{
+    .tab-list{
+
+    }
+    .tab-content{
+        .tab-panel{
+            display: none;
+            &.active{
+                display: block;
+            }
+        }
+    }
+}

@@ -42,7 +42,7 @@ class CustomDeck extends Component {
         <h2>Build your own custom deck</h2>
         <Tabs tabs={Object.keys(cardsByRarity)}>
           {Object.keys(cardsByRarity).map((rarity) => (
-            <ul key={rarity}>
+            <ul className="cards-container" key={rarity}>
               {cardsByRarity[rarity].map((card) => (
                 <li className="btn-pointer" key={card._id} role="presentation">
                   <Card card={card} />

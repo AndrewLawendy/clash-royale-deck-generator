@@ -1,0 +1,50 @@
+.cards-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 30px 12px;
+
+    li {
+        position: relative;
+        transition: transform .3s;
+
+        .card-img {
+            width: 100%;
+        }
+
+        .card-elixir-cost {
+            $img-width: 32px;
+            position: absolute;
+            top: -$img-width/4;
+            left: -$img-width/4;
+
+            img {
+                width: $img-width;
+            }
+
+            span {
+                color: #fff;
+                @include initPos(absolute, true);
+                text-align: center;
+                line-height: $img-width+5;
+            }
+        }
+
+        .card-lvl {
+            $bbr: 12px;
+            position: absolute;
+            left: 0;
+            bottom: 24px;
+            width: 100%;
+            color: lighten($blue, 10);
+            padding: 15px 5px;
+            background-color: rgba(0, 0, 0, .6);
+            border-bottom-right-radius: $bbr;
+            border-bottom-left-radius: $bbr;
+        }
+
+        &:hover {
+            transform: scale3d(1.02, 1.02, 1)
+        }
+    }
+}

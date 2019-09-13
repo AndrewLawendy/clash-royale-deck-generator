@@ -2,11 +2,15 @@
     @include initPos(fixed, true);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 40px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     #popup-bg {
-        @include initPos(absolute, true);
+        @include initPos(fixed, true);
         background-color: rgba(0, 0, 0, 0.6);
+        z-index: -1;
         opacity: 1;
         animation: fade-in .3s;
     }

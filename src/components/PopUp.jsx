@@ -27,10 +27,12 @@ class PopUp extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleEsc);
+    document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleEsc);
+    document.body.style.overflow = '';
   }
 
   handleEsc(e) {
