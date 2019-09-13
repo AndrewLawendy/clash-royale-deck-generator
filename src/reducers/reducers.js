@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 import * as constants from '../actions/actionTypes';
 
 const filteredInitState = {
-  allCards: [],
   filteredDeck: [],
+  allCards: [],
+  tempCards: [],
 };
 
 const commonInitState = {
@@ -23,6 +24,11 @@ const filteredReducer = (state = filteredInitState, action) => {
       return {
         ...state,
         allCards: action.payload,
+      };
+    case constants.PASS_TEMP_CARDS:
+      return {
+        ...state,
+        tempCards: action.payload,
       };
     default:
       return state;

@@ -86,5 +86,11 @@
 #custom-deck-container{
     .cards-container{
         grid-template-columns: repeat(8, auto);
+
+        li{
+            &.chosen{
+                opacity: .6;
+            }
+        }
     }
 }

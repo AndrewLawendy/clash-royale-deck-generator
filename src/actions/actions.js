@@ -10,6 +10,11 @@ export const passAllCards = (cards) => ({
   payload: cards,
 });
 
+export const passTempCards = (cards) => ({
+  type: constants.PASS_TEMP_CARDS,
+  payload: cards,
+});
+
 export const togglePopup = (show, component) => ({
   type: constants.POPUP_TOGGLE,
   payload: {

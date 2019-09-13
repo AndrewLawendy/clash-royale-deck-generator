@@ -74,7 +74,7 @@ class Deck extends Component {
     const reflectionXLeft = {
       left: reflectionX - 120,
     };
-    const averageElixir = (filteredDeck.reduce((acc, curr) => acc + curr.elixirCost, 0) / 8).toFixed(1);
+    const averageElixir = (filteredDeck.reduce((acc, curr) => acc + curr.elixirCost, 0) / (filteredDeck.length || 1)).toFixed(1);
 
     /* eslint no-underscore-dangle: [2, { "allow": ["_id"] }] */
 
@@ -99,6 +99,7 @@ class Deck extends Component {
                   alt="Elixir"
                   className="btn-pointer"
                   onClick={() => openPopup(<DeckStats cards={filteredDeck} />)}
+                  title="Click to get the deck stats!"
                   role="presentation"
                 />
               ) : (
