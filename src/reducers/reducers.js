@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import * as constants from '../actions/actionTypes';
 
 const filteredInitState = {
+  allCards: [],
   filteredDeck: [],
 };
 
@@ -17,6 +18,11 @@ const filteredReducer = (state = filteredInitState, action) => {
       return {
         ...state,
         filteredDeck: action.payload,
+      };
+    case constants.GET_ALL_CARDS:
+      return {
+        ...state,
+        allCards: action.payload,
       };
     default:
       return state;

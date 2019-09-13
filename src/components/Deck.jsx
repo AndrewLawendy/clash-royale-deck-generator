@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import CardInfo from './CardInfo';
 import DeckStats from './DeckStats';
+import CustomDeck from './CustomDeck';
 import { passCards, togglePopup } from '../actions/actions';
 import elixirPng from '../assets/elixir.png';
 
@@ -17,10 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   gen: (cards) => {
     dispatch(passCards(cards));
   },
-  openStats: (component) => {
-    dispatch(togglePopup(true, component));
-  },
-  openInfo: (component) => {
+  openPopup: (component) => {
     dispatch(togglePopup(true, component));
   },
 });
@@ -67,7 +65,7 @@ class Deck extends Component {
   }
 
   render() {
-    const { filteredDeck, openStats, openInfo } = this.props;
+    const { filteredDeck, openPopup } = this.props;
     const { deckRotationX, deckRotationY, reflectionX } = this.state;
     const deckRotation = {
       transform: `rotateX(${deckRotationX}deg)
@@ -87,7 +85,7 @@ class Deck extends Component {
           <h2 className="text-white text-border">Clash Royale</h2>
           <ul id="cards">
             {filteredDeck.map((card) => (
-              <li className="btn-pointer" key={card._id} onClick={() => openInfo(<CardInfo card={card} />)} role="presentation">
+              <li className="btn-pointer" key={card._id} onClick={() => openPopup(<CardInfo card={card} />)} role="presentation">
                 <Card card={card} />
               </li>
             ))}
@@ -100,7 +98,7 @@ class Deck extends Component {
                   src={elixirPng}
                   alt="Elixir"
                   className="btn-pointer"
-                  onClick={() => openStats(<DeckStats cards={filteredDeck} />)}
+                  onClick={() => openPopup(<DeckStats cards={filteredDeck} />)}
                   role="presentation"
                 />
               ) : (
@@ -112,14 +110,24 @@ class Deck extends Component {
             }
           </p>
         </div>
-        <button
-          type="button"
-          onClick={this.generateRandomDeck}
-          id="generate-random"
-          className="text-white"
-        >
-          Generate
-        </button>
+        <div id="deck-btns-ctrl">
+          <button
+            type="button"
+            id="custom-builder"
+            className="text-white"
+            onClick={() => openPopup(<CustomDeck />)}
+          >
+            Build Custom Deck
+          </button>
+          <button
+            type="button"
+            onClick={this.generateRandomDeck}
+            id="generate-random"
+            className="text-white"
+          >
+            Generate
+          </button>
+        </div>
       </div>
     );
   }
@@ -128,8 +136,7 @@ class Deck extends Component {
 Deck.propTypes = {
   filteredDeck: PropTypes.arrayOf(PropTypes.object).isRequired,
   gen: PropTypes.func.isRequired,
-  openStats: PropTypes.func.isRequired,
-  openInfo: PropTypes.func.isRequired,
+  openPopup: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Deck);

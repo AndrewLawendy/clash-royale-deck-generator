@@ -19,7 +19,7 @@ function DeckStats(props) {
     <div id="deck-stats">
       <h2>Deck Stats</h2>
       <h3>Average</h3>
-      <BarChart obj={{ '': elixirAvg }} maximum={80} />
+      <BarChart obj={{ '': elixirAvg }} maximum={10} />
       <h3>4-Card Cycle</h3>
       <BarChart obj={{ '': elixirMin }} maximum={40} />
       <h3>Types</h3>
