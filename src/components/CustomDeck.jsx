@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(passTempCards(cards));
   },
   submit: (cards, popup) => {
-    popup && dispatch(togglePopup(false));
+    if (popup)dispatch(togglePopup(false));
     dispatch(passCards(cards));
   },
 });
