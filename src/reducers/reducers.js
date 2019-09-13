@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
 import * as constants from '../actions/actionTypes';
 
-const randomInitState = {
-  randomDeck: [],
-  selectedCard: {},
+const filteredInitState = {
+  filteredDeck: [],
 };
 
 const commonInitState = {
@@ -11,17 +10,12 @@ const commonInitState = {
   popupComponent: null,
 };
 
-const randomReducer = (state = randomInitState, action) => {
+const filteredReducer = (state = filteredInitState, action) => {
   switch (action.type) {
-    case constants.GEN_RANDOM:
+    case constants.PASS_CARDS:
       return {
         ...state,
-        randomDeck: action.payload,
-      };
-    case constants.SELECT_CARD:
-      return {
-        ...state,
-        selectedCard: action.payload,
+        filteredDeck: action.payload,
       };
     default:
       return state;
@@ -41,6 +35,6 @@ const commonReducer = (state = commonInitState, action) => {
   }
 };
 
-const allReducers = combineReducers({ randomReducer, commonReducer });
+const allReducers = combineReducers({ filteredReducer, commonReducer });
 
 export default allReducers;

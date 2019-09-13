@@ -1,13 +1,8 @@
 import * as constants from './actionTypes';
 
-export const genRandom = (random) => ({
-  type: constants.GEN_RANDOM,
-  payload: random,
-});
-
-export const selectCard = (card) => ({
-  type: constants.SELECT_CARD,
-  payload: card,
+export const passCards = (cards) => ({
+  type: constants.PASS_CARDS,
+  payload: cards,
 });
 
 export const togglePopup = (show, component) => ({

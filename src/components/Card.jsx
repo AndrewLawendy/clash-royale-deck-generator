@@ -1,19 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { togglePopup, selectCard } from '../actions/actions';
-import CardInfo from './CardInfo';
 import elixirPng from '../assets/elixir.png';
 
-const mapDispatchToProps = (dispatch) => ({
-  openInfo: (card, component) => {
-    dispatch(selectCard(card));
-    dispatch(togglePopup(true, component));
-  },
-});
 
 function Card(props) {
-  const { card = {}, openInfo } = props;
+  const { card } = props;
 
   const checkLevel = (rarity) => {
     switch (rarity) {
@@ -29,7 +20,7 @@ function Card(props) {
   };
 
   return (
-    <li onClick={() => openInfo(card, <CardInfo card={card} />)} role="presentation">
+    <span>
       <img
         className="card-img"
         src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
@@ -42,14 +33,13 @@ function Card(props) {
       <span className="card-lvl text-center text-border">
         {`Level ${checkLevel(card.rarity)}`}
       </span>
-    </li>
+    </span>
   );
 }
 
 
 Card.propTypes = {
   card: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  openInfo: PropTypes.func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(Card);
+export default Card;
