@@ -12,7 +12,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   close: () => {
-    dispatch(togglePopup(false));
+    document.getElementById('popup').classList.add('fade-out');
+    setTimeout(() => {
+      dispatch(togglePopup(false));
+    }, 300);
   },
 });
 
@@ -40,9 +43,10 @@ class PopUp extends Component {
   render() {
     const { close, popupComponent } = this.props;
     return (
-      <div id="popup-bg">
+      <div id="popup">
+        <div id="popup-bg" onClick={close} role="presentation" />
         <div id="popup-container">
-          <button type="button" id="popup-close" onClick={close}>x</button>
+          <button type="button" className="text-header" id="popup-close" onClick={close}>x</button>
           {popupComponent}
         </div>
       </div>

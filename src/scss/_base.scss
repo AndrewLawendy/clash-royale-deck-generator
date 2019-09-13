@@ -10,14 +10,23 @@ body {
     background: url(../assets/main-bg.png) 0% / cover;
     cursor: url(../assets/mouse-sword.png), auto;
 
-    h2 {
+    h2,h3{
         font-family: $header-font;
+    }
+
+    h2 {
         font-size: 2rem;
         margin: 12px 0;
     }
 
+    h3{
+        font-size: 1.2rem;
+        margin: 8px 0;
+    }
+
     p{
-        margin: 12px 0;
+        font-size: 1rem;
+        margin-bottom: 12px;
     }
 
     .text-center{

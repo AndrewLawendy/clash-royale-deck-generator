@@ -1,10 +1,15 @@
-#popup-bg {
+#popup {
     @include initPos(fixed, true);
-    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fade-in .3s;
+
+    #popup-bg {
+        @include initPos(absolute, true);
+        background-color: rgba(0, 0, 0, 0.6);
+        opacity: 1;
+        animation: fade-in .3s;
+    }
 
     #popup-container {
         max-width: 70%;
@@ -15,8 +20,24 @@
         opacity: 0;
         animation: slide-down 0.4s .2s forwards;
 
-        #popup-close{
+        #popup-close {
             float: right;
         }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+    }
+
+    &.fade-out {
+        #popup-bg {
+            transition: opacity .3s .3s;
+            opacity: 0;
+        }
+
+        #popup-container {
+            animation: slide-up .4s;
+        }
+
     }
 }

@@ -29,21 +29,19 @@ function Card(props) {
   };
 
   return (
-    <li>
-      <button type="button" onClick={() => openInfo(card, <CardInfo card={card} />)}>
-        <img
-          className="card-img"
-          src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
-          alt={card.name}
-        />
-        <span className="card-elixir-cost">
-          <img src={elixirPng} alt="Elixir" />
-          <span>{card.elixirCost}</span>
-        </span>
-        <span className="card-lvl text-center text-border">
-          {`Level ${checkLevel(card.rarity)}`}
-        </span>
-      </button>
+    <li onClick={() => openInfo(card, <CardInfo card={card} />)} role="presentation">
+      <img
+        className="card-img"
+        src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
+        alt={card.name}
+      />
+      <span className="card-elixir-cost">
+        <img src={elixirPng} alt="Elixir" />
+        <span>{card.elixirCost}</span>
+      </span>
+      <span className="card-lvl text-center text-border">
+        {`Level ${checkLevel(card.rarity)}`}
+      </span>
     </li>
   );
 }

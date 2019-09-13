@@ -3,14 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Card from './Card';
-import PopUp from './PopUp';
 import { genRandom } from '../actions/actions';
 import elixirPng from '../assets/elixir.png';
 
 const mapStateToProps = (state) => {
   const { randomDeck } = state.randomReducer;
-  const { popupShow } = state.commonReducer;
-  return { randomDeck, popupShow };
+  return { randomDeck };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -61,7 +59,7 @@ class Deck extends Component {
   }
 
   render() {
-    const { randomDeck, popupShow } = this.props;
+    const { randomDeck } = this.props;
     const { deckRotationX, deckRotationY, reflectionX } = this.state;
     const deckRotation = {
       transform: `rotateX(${deckRotationX}deg)
@@ -97,16 +95,14 @@ class Deck extends Component {
         >
           Generate
         </button>
-        { popupShow && <PopUp />}
       </div>
     );
   }
 }
 
 Deck.propTypes = {
-  randomDeck: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  randomDeck: PropTypes.arrayOf(PropTypes.object).isRequired,
   gen: PropTypes.func.isRequired,
-  popupShow: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Deck);

@@ -12,7 +12,18 @@ function CardInfo(props) {
         src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
         alt={card.name}
       />
-      <p>{card.name}</p>
+      <div className="card-description">
+        <h3>Name</h3>
+        <p>{card.name}</p>
+        <h3>Rarity</h3>
+        <p>{card.rarity}</p>
+        <h3>Elixir Cost</h3>
+        <p>{card.elixirCost}</p>
+        <h3>Type</h3>
+        <p>{card.type}</p>
+        <h3>Description</h3>
+        <p>{card.description}</p>
+      </div>
     </div>
   );
 }
