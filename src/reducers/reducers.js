@@ -8,6 +8,7 @@ const filteredInitState = {
 const commonInitState = {
   popupShow: false,
   popupComponent: null,
+  sound: false,
 };
 
 const filteredReducer = (state = filteredInitState, action) => {
@@ -29,6 +30,11 @@ const commonReducer = (state = commonInitState, action) => {
         ...state,
         popupShow: action.payload.show,
         popupComponent: action.payload.component,
+      };
+    case constants.SOUND_TOGGLE:
+      return {
+        ...state,
+        sound: !state.sound,
       };
     default:
       return state;

@@ -8,7 +8,7 @@ body {
     min-height: 100vh;
     background: rgb(72, 139, 244);
     background: url(../assets/main-bg.png) 0% / cover;
-    cursor: url(../assets/mouse-sword.png), auto;
+    cursor: url(../assets/mouse-sword-36.png), auto;
 
     h2,h3{
         font-family: $header-font;
@@ -55,7 +55,7 @@ body {
     }
 
     .btn-pointer{
-        cursor: pointer;
+        cursor: url(../assets/pointer-36.png), pointer;
     }
 
     #app {

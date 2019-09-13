@@ -84,10 +84,10 @@ class Deck extends Component {
       <div id="deck-ctrl">
         <div id="deck" style={deckRotation}>
           <div id="deck-reflection" style={reflectionXLeft} />
-          <h2 className="text-white text-border">Royal Clash</h2>
+          <h2 className="text-white text-border">Clash Royale</h2>
           <ul id="cards">
             {filteredDeck.map((card) => (
-              <li key={card._id} onClick={() => openInfo(<CardInfo card={card} />)} role="presentation">
+              <li className="btn-pointer" key={card._id} onClick={() => openInfo(<CardInfo card={card} />)} role="presentation">
                 <Card card={card} />
               </li>
             ))}

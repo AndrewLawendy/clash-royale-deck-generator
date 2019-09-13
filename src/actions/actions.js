@@ -11,3 +11,8 @@ export const togglePopup = (show, component) => ({
     show, component,
   },
 });
+
+
+export const toggleSound = () => ({
+  type: constants.SOUND_TOGGLE,
+});
