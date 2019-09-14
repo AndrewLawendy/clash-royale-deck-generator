@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(passTempCards(cards));
   },
   submit: (cards, popup) => {
-    if (popup)dispatch(togglePopup(false));
+    if (popup) dispatch(togglePopup(false));
     dispatch(passCards(cards));
   },
 });
@@ -30,6 +30,9 @@ const mapDispatchToProps = (dispatch) => ({
 class CustomDeck extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      cardsByRarity: {},
+    };
     this.addToTemp = this.addToTemp.bind(this);
   }
 
@@ -39,7 +42,16 @@ class CustomDeck extends Component {
     if (!allCards.length) {
       fetch('http://www.clashapi.xyz/api/cards')
         .then((res) => res.json())
-        .then((res) => getAll(res));
+        .then((res) => {
+          getAll(res);
+          this.setState({
+            cardsByRarity: res.reduce((acc, curr) => {
+              if (!acc[curr.rarity]) acc[curr.rarity] = [];
+              acc[curr.rarity].push(curr);
+              return acc;
+            }, {}),
+          });
+        });
     }
   }
 
@@ -56,13 +68,9 @@ class CustomDeck extends Component {
 
   render() {
     const {
-      allCards, tempCards, submit, passTemp,
+      tempCards, submit, passTemp,
     } = this.props;
-    const cardsByRarity = allCards.reduce((acc, curr) => {
-      if (!acc[curr.rarity]) acc[curr.rarity] = [];
-      acc[curr.rarity].push(curr);
-      return acc;
-    }, {});
+    const { cardsByRarity } = this.state;
     return (
     /* eslint no-underscore-dangle: [2, { "allow": ["_id"] }] */
 
@@ -70,7 +78,7 @@ class CustomDeck extends Component {
         <h2>Build your own custom deck</h2>
         {tempCards.length ? (
           <p>
-Your choices are
+            Your choices are
             {tempCards.map((card, index) => <span key={card._id}>{`${index ? ',' : ''} ${card.name}/${card.elixirCost}(${card.rarity})`}</span>)}
           </p>
         ) : <p>Click on the cards to build your deck!</p>}
