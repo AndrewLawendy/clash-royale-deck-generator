@@ -17,7 +17,7 @@
         flex-basis: 0;
         font-size: 1rem;
         background: linear-gradient(180deg, rgba(72, 139, 244, 0.9) 0%, rgba(75, 115, 185, 1) 47%, rgba(54, 97, 172, 1) 49%, rgba(1, 0, 11, 1) 100%);
-        transition: all .6s ease-in-out;
+        transition: all .6s ease-out;
 
         &:not(:last-of-type) {
             border-right: 2px solid 131313;

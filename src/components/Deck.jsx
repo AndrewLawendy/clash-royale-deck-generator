@@ -1,4 +1,5 @@
 /* eslint-env browser */
+import 'babel-polyfill';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -29,6 +30,11 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Deck extends Component {
+  static async asyncFetch(url) {
+    const response = await fetch(url).then((res) => res.json());
+    return response;
+  }
+
   constructor(props) {
     super(props);
     this.followingDeck = this.followingDeck.bind(this);
@@ -62,15 +68,13 @@ class Deck extends Component {
     }));
   }
 
-  generateCustomDeck(ids) {
+  async generateCustomDeck(ids) {
     const { gen } = this.props;
-    const cards = [];
-    ids.forEach((id) => {
-      fetch(`http://www.clashapi.xyz/api/cards/${id}`)
-        .then((res) => res.json())
-        .then((res) => cards.push(res));
+    const cardsPromises = ids.map((id) => {
+      const res = Deck.asyncFetch(`http://www.clashapi.xyz/api/cards/${id}`);
+      return res;
     });
-    gen(cards);
+    Promise.all(cardsPromises).then((cards) => gen(cards));
   }
 
   render() {
