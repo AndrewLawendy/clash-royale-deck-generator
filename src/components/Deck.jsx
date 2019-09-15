@@ -2,11 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import queryString from 'query-string';
+
+import { passCards, togglePopup } from '../actions/actions';
+
 import Card from './Card';
 import CardInfo from './CardInfo';
 import DeckStats from './DeckStats';
 import CustomDeck from './CustomDeck';
-import { passCards, togglePopup } from '../actions/actions';
+
 import elixirPng from '../assets/elixir.png';
 
 const mapStateToProps = (state) => {
@@ -28,6 +32,7 @@ class Deck extends Component {
     super(props);
     this.generateRandomDeck = this.generateRandomDeck.bind(this);
     this.followingDeck = this.followingDeck.bind(this);
+    this.generateCustomDeck = this.generateCustomDeck.bind(this);
     this.state = {
       deckRotationX: 0,
       deckRotationY: 0,
@@ -37,6 +42,8 @@ class Deck extends Component {
 
   componentDidMount() {
     document.addEventListener('mousemove', this.followingDeck);
+    const { cards = '' } = queryString.parse(window.location.search);
+    if (cards) this.generateCustomDeck(cards.split(','));
   }
 
   componentWillUnmount() {
@@ -55,6 +62,19 @@ class Deck extends Component {
     }));
   }
 
+  generateCustomDeck(ids) {
+    const { gen } = this.props;
+    const cards = [];
+    Promise.all(ids.forEach((id) => {
+      fetch(`http://www.clashapi.xyz/api/cards/${id}`)
+        .then((res) => res.json())
+        .then((res) => cards.push(res));
+    }))
+      .then(
+        gen(cards),
+      );
+  }
+
   generateRandomDeck() {
     const { gen } = this.props;
     fetch('http://www.clashapi.xyz/api/random-deck')
@@ -67,6 +87,7 @@ class Deck extends Component {
   render() {
     const { filteredDeck, openPopup } = this.props;
     const { deckRotationX, deckRotationY, reflectionX } = this.state;
+    const filteredQueryString = filteredDeck.map((card) => card._id).join(',');
     const deckRotation = {
       transform: `rotateX(${deckRotationX}deg)
        rotateY(${deckRotationY}deg)`,
@@ -80,6 +101,7 @@ class Deck extends Component {
 
     return (
       <div id="deck-ctrl">
+        <p>{filteredQueryString}</p>
         <div id="deck" style={deckRotation}>
           <div id="deck-reflection" style={reflectionXLeft} />
           <h2 className="text-white text-border">Clash Royale</h2>
