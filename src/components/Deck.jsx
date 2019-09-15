@@ -68,7 +68,7 @@ class Deck extends Component {
     }));
   }
 
-  async generateCustomDeck(ids) {
+  generateCustomDeck(ids) {
     const { gen } = this.props;
     const cardsPromises = ids.map((id) => {
       const res = Deck.asyncFetch(`http://www.clashapi.xyz/api/cards/${id}`);
