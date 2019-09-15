@@ -123,5 +123,11 @@ body {
             z-index: -1;
             animation: ulter-visibility 20s infinite;
         }
+
+        #toggle-sound{
+            position: fixed;
+            top:45px;
+            left: 45px;
+        }
     }
 }

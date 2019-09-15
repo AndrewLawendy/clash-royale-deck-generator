@@ -10,7 +10,7 @@ const filteredInitState = {
 const commonInitState = {
   popupShow: false,
   popupComponent: null,
-  sound: false,
+  sound: true,
 };
 
 const filteredReducer = (state = filteredInitState, action) => {
