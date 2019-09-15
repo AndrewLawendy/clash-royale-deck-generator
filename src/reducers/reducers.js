@@ -3,7 +3,7 @@ import * as constants from '../actions/actionTypes';
 
 const filteredInitState = {
   filteredDeck: [],
-  allCards: [],
+  allCards: {},
   tempCards: [],
 };
 

@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BarChart from './BarChart';
+import { sumByProp } from '../helpers/helpers';
 
 function DeckStats(props) {
-  const sumByProp = (arr, prop) => arr.reduce((acc, curr) => {
-    if (!acc[curr[prop]]) acc[curr[prop]] = 0;
-    acc[curr[prop]] += 1;
-    return acc;
-  }, {});
-
   const { cards } = props;
   const elixirAvg = (cards.reduce((acc, curr) => acc + curr.elixirCost, 0) / 8).toFixed(1);
   const elixirMin = cards.map((card) => card.elixirCost).sort().slice(0, 4).reduce((acc, curr) => acc + curr, 0);

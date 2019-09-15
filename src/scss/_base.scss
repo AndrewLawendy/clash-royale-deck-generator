@@ -10,7 +10,8 @@ body {
     background: url(../assets/main-bg.png) 0% / cover;
     cursor: url(../assets/mouse-sword-36.png), auto;
 
-    h2,h3{
+    h2,
+    h3 {
         font-family: $header-font;
     }
 
@@ -19,17 +20,70 @@ body {
         margin: 12px 0;
     }
 
-    h3{
+    h3 {
         font-size: 1.2rem;
         margin: 8px 0;
     }
 
-    p{
+    p {
         font-size: 1rem;
         margin-bottom: 12px;
     }
 
-    .text-center{
+    .btn {
+        font-family: $header-font;
+        padding: 15px 20px;
+        margin: 0 10px;
+        // letter-spacing: 2px;
+        border-radius: 5px;
+        // box-shadow: inset -5px -4px 6px rgba(0, 0, 0, .7), 4px 4px 5px #000;
+        transition: all .3s;
+
+        &.btn-yellow {
+            color: #fff;
+            background-color: $yellow;
+
+            &:hover {
+                background-color: darken($yellow, 10);
+            }
+
+            &:active {
+                background-color: darken($yellow, 20);
+            }
+        }
+
+        &.btn-green {
+            color: #fff;
+            background-color: $green;
+
+            &:hover {
+                background-color: darken($green, 10);
+            }
+
+            &:active {
+                background-color: darken($green, 20);
+            }
+        }
+
+        &.btn-red {
+            color: #fff;
+            background-color: $red;
+
+            &:hover {
+                background-color: darken($red, 10);
+            }
+
+            &:active {
+                background-color: darken($red, 20);
+            }
+        }
+
+        &[disabled]{
+            opacity: .5;
+        }
+    }
+
+    .text-center {
         text-align: center
     }
 
@@ -37,11 +91,11 @@ body {
         color: #fff;
     }
 
-    .text-violet{
+    .text-violet {
         color: $violet;
     }
 
-    .text-header{
+    .text-header {
         font-family: $header-font;
     }
 
@@ -54,8 +108,12 @@ body {
             1px 1px 0 #000;
     }
 
-    .btn-pointer{
+    .btn-pointer {
         cursor: url(../assets/pointer-36.png), pointer;
+    }
+
+    .not-allowed {
+        cursor: not-allowed;
     }
 
     #app {

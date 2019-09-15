@@ -115,7 +115,7 @@ class Deck extends Component {
           <button
             type="button"
             id="custom-builder"
-            className="text-white"
+            className="btn btn-green"
             onClick={() => openPopup(<CustomDeck />)}
           >
             Build Custom Deck
@@ -124,7 +124,7 @@ class Deck extends Component {
             type="button"
             onClick={this.generateRandomDeck}
             id="generate-random"
-            className="text-white"
+            className="btn btn-yellow"
           >
             Generate
           </button>

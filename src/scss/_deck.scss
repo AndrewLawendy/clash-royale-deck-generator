@@ -46,39 +46,6 @@
 
     #deck-btns-ctrl {
         position: relative;
-
-        button {
-            padding: 15px 20px;
-            margin: 0 10px;
-            letter-spacing: 2px;
-            border-radius: 5px;
-            box-shadow: inset -5px -4px 6px rgba(0, 0, 0, .7), 4px 4px 5px #000;
-            transition: all .3s;
-        }
-
-        #generate-random {
-            background-color: $yellow;
-
-            &:hover {
-                background-color: darken($yellow, 10);
-            }
-
-            &:active {
-                background-color: darken($yellow, 20);
-            }
-        }
-
-        #custom-builder{
-            background-color: $green;
-
-            &:hover {
-                background-color: darken($green, 10);
-            }
-
-            &:active {
-                background-color: darken($green, 20);
-            }
-        }
     }
 }
 
@@ -91,6 +58,17 @@
             &.chosen{
                 opacity: .6;
             }
+        }
+    }
+
+    #custom-deck-ctrl{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin: 25px -10px 0;
+
+        button{
+            margin: 0 10px;
         }
     }
 }

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {
   passCards, passTempCards, passAllCards, togglePopup,
 } from '../actions/actions';
+import { classList, groupByProp } from '../helpers/helpers';
 
 import Card from './Card';
 import Tabs from './Tabs';
@@ -30,10 +31,7 @@ const mapDispatchToProps = (dispatch) => ({
 class CustomDeck extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cardsByRarity: {},
-    };
-    this.addToTemp = this.addToTemp.bind(this);
+    this.toggleAddCard = this.toggleAddCard.bind(this);
   }
 
   componentDidMount() {
@@ -43,34 +41,28 @@ class CustomDeck extends Component {
       fetch('http://www.clashapi.xyz/api/cards')
         .then((res) => res.json())
         .then((res) => {
-          getAll(res);
-          this.setState({
-            cardsByRarity: res.reduce((acc, curr) => {
-              if (!acc[curr.rarity]) acc[curr.rarity] = [];
-              acc[curr.rarity].push(curr);
-              return acc;
-            }, {}),
-          });
+          const groupByRarity = groupByProp(res, 'rarity');
+          getAll(groupByRarity);
         });
     }
   }
 
-  addToTemp(card) {
+  toggleAddCard(card) {
     const { tempCards, passTemp } = this.props;
-    if (!tempCards.includes(card) && tempCards.length < 8) passTemp(tempCards.concat(card));
-  }
-
-  removeFromTemp(card) {
-    const { tempCards, passTemp } = this.props;
-    const index = tempCards.indexOf(card);
-    passTemp(tempCards.slice(0, index).concat(tempCards.slice(index + 1)));
+    const includes = tempCards.includes(card);
+    if (tempCards.length < 8 && !includes) { // Add
+      passTemp(tempCards.concat(card));
+    } else if (includes) { // Remove
+      const index = tempCards.indexOf(card);
+      passTemp(tempCards.slice(0, index).concat(tempCards.slice(index + 1)));
+    }
   }
 
   render() {
     const {
+      allCards,
       tempCards, submit, passTemp,
     } = this.props;
-    const { cardsByRarity } = this.state;
     return (
     /* eslint no-underscore-dangle: [2, { "allow": ["_id"] }] */
 
@@ -78,30 +70,42 @@ class CustomDeck extends Component {
         <h2>Build your own custom deck</h2>
         {tempCards.length ? (
           <p>
-            Your choices are
+            {`You chose ${tempCards.length} card(s): `}
             {tempCards.map((card, index) => <span key={card._id}>{`${index ? ',' : ''} ${card.name}/${card.elixirCost}(${card.rarity})`}</span>)}
           </p>
         ) : <p>Click on the cards to build your deck!</p>}
-        <Tabs tabs={Object.keys(cardsByRarity)}>
-          {Object.keys(cardsByRarity).map((rarity) => (
+        <Tabs tabs={['Common', 'Rare', 'Epi', 'Legendary']}>
+          {Object.keys(allCards).map((rarity) => (
             <ul className="cards-container" key={rarity}>
-              {cardsByRarity[rarity].map((card) => (
-                <li className={`btn-pointer ${tempCards.includes(card) ? 'chosen' : ''}`} key={card._id} onClick={() => (tempCards.includes(card) ? this.removeFromTemp(card) : this.addToTemp(card))} title={tempCards.includes(card) ? 'Click to remove from the list!' : 'Click to choose!'} role="presentation">
+              {allCards[rarity].map((card) => (
+                <li
+                  className={classList(
+                    'btn-pointer',
+                    tempCards.includes(card) && 'chosen',
+                    tempCards.length === 8 && !tempCards.includes(card) && 'not-allowed',
+                  )}
+                  key={card._id}
+                  onClick={() => this.toggleAddCard(card)}
+                  title={tempCards.includes(card) ? 'Click to remove from the list!' : 'Click to choose!'}
+                  role="presentation"
+                >
                   <Card card={card} />
                 </li>
               ))}
             </ul>
           ))}
         </Tabs>
-        <button type="button" disabled={!tempCards.length} onClick={() => (tempCards.length ? passTemp([]) : '')}>Reset</button>
-        <button type="button" disabled={tempCards.length < 8} onClick={() => (tempCards.length === 8 ? submit(tempCards, true) : '')}>Submit</button>
+        <div id="custom-deck-ctrl">
+          <button type="button" className="btn btn-red" disabled={!tempCards.length} onClick={() => (tempCards.length ? passTemp([]) : '')}>Reset</button>
+          <button type="button" className="btn btn-green" disabled={tempCards.length < 8} onClick={() => (tempCards.length === 8 ? submit(tempCards, true) : '')}>Submit</button>
+        </div>
       </div>
     );
   }
 }
 
 CustomDeck.propTypes = {
-  allCards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  allCards: PropTypes.oneOfType([PropTypes.object]).isRequired,
   tempCards: PropTypes.arrayOf(PropTypes.object).isRequired,
   getAll: PropTypes.func.isRequired,
   passTemp: PropTypes.func.isRequired,

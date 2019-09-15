@@ -23,6 +23,7 @@ class PopUp extends Component {
   constructor(props) {
     super(props);
     this.handleEsc = this.handleEsc.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -42,13 +43,19 @@ class PopUp extends Component {
     }
   }
 
+  handleClick(e) {
+    if (e.target === e.currentTarget) {
+      const { close } = this.props;
+      close();
+    }
+  }
+
   render() {
-    const { close, popupComponent } = this.props;
+    const { popupComponent } = this.props;
     return (
-      <div id="popup">
-        <div id="popup-bg" onClick={close} role="presentation" />
-        <div id="popup-container">
-          <button type="button" className="text-header" id="popup-close" onClick={close}>x</button>
+      <div id="popup" onClick={this.handleClick} role="presentation">
+        <div id="popup-body">
+          <button type="button" className="text-header" id="popup-close" onClick={this.handleClick}>x</button>
           {popupComponent}
         </div>
       </div>
