@@ -9,7 +9,8 @@ import { passCards, togglePopup } from '../actions/actions';
 import Card from './Card';
 import CardInfo from './CardInfo';
 import DeckStats from './DeckStats';
-import CustomDeck from './CustomDeck';
+import DeckBtnCtrls from './DeckBtnCtrls';
+
 
 import elixirPng from '../assets/elixir.png';
 
@@ -30,7 +31,6 @@ const mapDispatchToProps = (dispatch) => ({
 class Deck extends Component {
   constructor(props) {
     super(props);
-    this.generateRandomDeck = this.generateRandomDeck.bind(this);
     this.followingDeck = this.followingDeck.bind(this);
     this.generateCustomDeck = this.generateCustomDeck.bind(this);
     this.state = {
@@ -65,23 +65,12 @@ class Deck extends Component {
   generateCustomDeck(ids) {
     const { gen } = this.props;
     const cards = [];
-    Promise.all(ids.forEach((id) => {
+    ids.forEach((id) => {
       fetch(`http://www.clashapi.xyz/api/cards/${id}`)
         .then((res) => res.json())
         .then((res) => cards.push(res));
-    }))
-      .then(
-        gen(cards),
-      );
-  }
-
-  generateRandomDeck() {
-    const { gen } = this.props;
-    fetch('http://www.clashapi.xyz/api/random-deck')
-      .then((res) => res.json())
-      .then((res) => {
-        gen(res);
-      });
+    });
+    gen(cards);
   }
 
   render() {
@@ -96,12 +85,10 @@ class Deck extends Component {
       left: reflectionX - 120,
     };
     const averageElixir = (filteredDeck.reduce((acc, curr) => acc + curr.elixirCost, 0) / (filteredDeck.length || 1)).toFixed(1);
-
     /* eslint no-underscore-dangle: [2, { "allow": ["_id"] }] */
 
     return (
       <div id="deck-ctrl">
-        <p>{filteredQueryString}</p>
         <div id="deck" style={deckRotation}>
           <div id="deck-reflection" style={reflectionXLeft} />
           <h2 className="text-white text-border">Clash Royale</h2>
@@ -133,24 +120,8 @@ class Deck extends Component {
             }
           </p>
         </div>
-        <div id="deck-btns-ctrl">
-          <button
-            type="button"
-            id="custom-builder"
-            className="btn btn-green"
-            onClick={() => openPopup(<CustomDeck />)}
-          >
-            Build Custom Deck
-          </button>
-          <button
-            type="button"
-            onClick={this.generateRandomDeck}
-            id="generate-random"
-            className="btn btn-yellow"
-          >
-            Generate
-          </button>
-        </div>
+        <DeckBtnCtrls />
+        <input type="text" readOnly id="shareable-link" value={`${window.location.origin}?cards=${filteredQueryString}`} />
       </div>
     );
   }

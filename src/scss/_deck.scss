@@ -47,6 +47,12 @@
     #deck-btns-ctrl {
         position: relative;
     }
+
+    #shareable-link{
+        position: fixed;
+        top:-20%;
+        z-index: -1;
+    }
 }
 
 
