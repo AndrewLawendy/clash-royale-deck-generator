@@ -26,7 +26,7 @@ class Tabs extends Component {
           {tabs.map((tab, index) => (
             <li
               className={`tab-title ${activeIndex === index ? 'active' : ''}`}
-              key={`${tab}-${Math.random()}`}
+              key={tab}
               onClick={() => (activeIndex !== index ? this.setActiveIndex(index) : '')}
               role="presentation"
             >
@@ -36,7 +36,7 @@ class Tabs extends Component {
         </ul>
         <ul className="tab-content">
           {childrenArr.map((panel, index) => (
-            <li className={`tab-panel ${activeIndex === index ? 'active' : ''}`} key={Math.random()}>
+            <li className={`tab-panel ${activeIndex === index ? 'active' : ''}`} key={`for-${tabs[index]}`}>
               {panel}
             </li>
           ))}

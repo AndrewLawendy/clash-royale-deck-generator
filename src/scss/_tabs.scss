@@ -22,11 +22,13 @@
                 width:100%;
                 height: 4px;
                 background-color: $blue;
+                transition: bottom .2s .15s;
             }
             &.active{
                 color: $blue;
                 &::after{
-                    animation: slide-up-all .2s forwards;
+                    transition: bottom .2s;
+                    bottom: 0
                 }
             }
 

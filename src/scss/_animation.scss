@@ -52,12 +52,3 @@
         transform: translate3d(0,-20px,0)
     }
 }
-
-@keyframes slide-up-all{
-    from{
-        transform: translate3d(0,0,0)
-    }
-    to{
-        transform: translate3d(0,-100%,0)
-    }
-}
