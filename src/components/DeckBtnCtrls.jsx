@@ -24,6 +24,7 @@ function DeckBtnCtrls(props) {
   const { openPopup, filteredDeck } = props;
 
   const generateRandomDeck = () => {
+    document.getElementById('gen-deck').play();
     const { gen } = props;
     fetch('http://www.clashapi.xyz/api/random-deck')
       .then((res) => res.json())
@@ -33,6 +34,7 @@ function DeckBtnCtrls(props) {
   };
 
   const genShareableLink = () => {
+    document.getElementById('copy-success').play();
     document.getElementById('shareable-link').select();
     document.execCommand('copy');
   };

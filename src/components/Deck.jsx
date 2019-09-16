@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(passCards(cards));
   },
   openPopup: (component) => {
+    document.getElementById('card-select').play();
     dispatch(togglePopup(true, component));
   },
 });

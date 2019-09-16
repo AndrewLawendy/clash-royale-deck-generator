@@ -36,6 +36,8 @@ class CustomDeck extends Component {
 
   componentDidMount() {
     const { allCards, getAll, passTemp } = this.props;
+    document.getElementById('bg-loop').pause();
+    document.getElementById('deck-popup').play();
     passTemp([]);
     if (!allCards.length) {
       fetch('http://www.clashapi.xyz/api/cards')
@@ -47,12 +49,21 @@ class CustomDeck extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const deckPopup = document.getElementById('deck-popup');
+    document.getElementById('bg-loop').play();
+    deckPopup.pause();
+    deckPopup.currentTime = 0;
+  }
+
   toggleAddCard(card) {
     const { tempCards, passTemp } = this.props;
     const includes = tempCards.includes(card);
     if (tempCards.length < 8 && !includes) { // Add
+      document.getElementById('card-select').play();
       passTemp(tempCards.concat(card));
     } else if (includes) { // Remove
+      document.getElementById('card-select').play();
       const index = tempCards.indexOf(card);
       passTemp(tempCards.slice(0, index).concat(tempCards.slice(index + 1)));
     }
