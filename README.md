@@ -14,6 +14,8 @@ The **Build Custom Deck** will open a popup containing all possible cards groupe
 
 The **Copy Shareable Link** will copy a link into your clipboard so you can send it to someone else to check you own deck of cards or a random one you layed your hand one.
 
+You can in any time mute the music by hitting the volume sign on the top left.
+
 ## Demo
 You can follow this [link](https://clash-royale-deck-gen.surge.sh/) to check a live preview.
 
