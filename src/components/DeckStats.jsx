@@ -7,7 +7,6 @@ function DeckStats(props) {
   const { cards } = props;
   const elixirAvg = (cards.reduce((acc, curr) => acc + curr.elixirCost, 0) / 8).toFixed(1);
   const elixirMin = cards.map((card) => card.elixirCost).sort().slice(0, 4).reduce((acc, curr) => acc + curr, 0);
-  const types = sumByProp(cards, 'type');
   const rarities = sumByProp(cards, 'rarity');
 
   return (
@@ -17,8 +16,6 @@ function DeckStats(props) {
       <BarChart obj={{ '': elixirAvg }} maximum={10} />
       <h3>4-Card Cycle</h3>
       <BarChart obj={{ '': elixirMin }} maximum={40} />
-      <h3>Types</h3>
-      <BarChart obj={types} />
       <h3>Rarities</h3>
       <BarChart obj={rarities} />
     </div>
