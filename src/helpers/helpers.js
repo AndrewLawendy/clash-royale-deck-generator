@@ -3,15 +3,14 @@ import Cards from '../api-locals/cards.json';
 export const getCards = () => Cards.items;
 
 export const getCard = (id) => Cards.items.find(
-  (card) => card.id == id,
+  (card) => card.id === Number(id),
 );
 
 export const getRandomCards = () => {
   const shuffled = [...Cards.items];
 
   shuffled.forEach((_item, idx) => {
-    // eslint-disable-next-line no-bitwise
-    const j = ~~(Math.random() * shuffled.length);
+    const j = Math.floor(Math.random() * shuffled.length);
     [shuffled[idx], shuffled[j]] = [shuffled[j], shuffled[idx]];
   });
 
