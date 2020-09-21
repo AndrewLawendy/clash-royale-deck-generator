@@ -19,10 +19,6 @@ function CardInfo(props) {
         <p>{card.rarity}</p>
         <h3>Elixir Cost</h3>
         <p>{card.elixirCost}</p>
-        <h3>Type</h3>
-        <p>{card.type}</p>
-        <h3>Description</h3>
-        <p>{card.description}</p>
       </div>
     </div>
   );
