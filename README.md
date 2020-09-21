@@ -17,7 +17,7 @@ The **Copy Shareable Link** will copy a link into your clipboard so you can send
 You can in any time mute the music by hitting the volume sign on the top left.
 
 ## Demo
-You can follow this [link](https://clash-royale-deck-gen.surge.sh/) to check a live preview.
+You can follow this [link](https://clash-royale-deck-generator.netlify.app/) to check a live preview.
 
 
 For the demo, don't forget to accept to **Load unsafe scripts**, that happens because the **surge** site provide a secure connection with the https but the API works throw http.
