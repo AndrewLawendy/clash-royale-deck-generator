@@ -56,7 +56,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/yHGpoEnmUWPGV_hBbhn-Kk-Bs838OjGzWzJJlQpQKQA.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 5
     },
     {
@@ -66,7 +66,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/qBipxLo-3hhCnPrApp2Nn3b2NgrSrvwzWytvREev0CY.png"
       },
-      "rarity": "Epi",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -76,7 +76,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/cfwk1vzehVyHC-uloEIH6NOI0hOdofCutR5PyhIgO6w.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 13
     },
     {
@@ -146,7 +146,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/Tex1C48UTq9FKtAX-3tzG0FJmc9jzncUZG3bb5Vf-Ds.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -266,7 +266,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/bAwMcqp9EKVIKH3ZLm_m0MqZFSG72zG-vKxpx8aKoVs.png"
       },
-      "rarity": "Epi",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -276,7 +276,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/M7fXlrKXHu2IvpSGpk36kXVstslbR08Bbxcy0jQcln8.png"
       },
-      "rarity": "Epi",
+      "rarity": "Legendary",
       "elixirCost": 5
     },
     {
@@ -366,7 +366,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/dyc50V2cplKi4H7pq1B3I36pl_sEH5DQrNHboS_dbbM.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -426,7 +426,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/RsFaHgB3w6vXsTjXdPr3x8l_GbV9TbOUCvIx07prbrQ.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 13
     },
     {
@@ -446,7 +446,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/VNabB1WKnYtYRSG7X_FZfnZjQDHTBs9A96OGMFmecrA.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 13
     },
     {
@@ -486,7 +486,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/NpCrXDEDBBJgNv9QrBAcJmmMFbS7pe3KCY8xJ5VB18A.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 9
     },
     {
@@ -546,7 +546,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/aqwxRz8HXzqlMCO4WMXNA1txynjXTsLinknqsgZLbok.png"
       },
-      "rarity": "Epi",
+      "rarity": "Legendary",
       "elixirCost": 9
     },
     {
@@ -556,7 +556,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/O2NycChSNhn_UK9nqBXUhhC_lILkiANzPuJjtjoz0CE.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -566,7 +566,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/vCB4DWCcrGbTkarjcOiVz4aNDx6GWLm0yUepg9E1MGo.png"
       },
-      "rarity": "Epi",
+      "rarity": "Legendary",
       "elixirCost": 13
     },
     {
@@ -576,7 +576,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/hzKNE3QwFcrSrDDRuVW3QY_OnrDPijSiIp-PsWgFevE.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 5
     },
     {
@@ -596,7 +596,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/ASSQJG_MoVq9e81HZzo4bynMnyLNpNJMfSLb3hqydOw.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -606,7 +606,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/SoW16cY3jXBwaTDvb39DkqiVsoFVaDWbzf5QBYphJrY.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 13
     },
     {
@@ -636,7 +636,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/tN9h6lnMNPCNsx0LMFmvpHgznbDZ1fBRkx-C7UfNmfY.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 5
     },
     {
@@ -696,7 +696,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/l8ZdzzNLcwB4u7ihGgxNFQOjCT_njFuAhZr7D6PRF7E.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 9
     },
     {
@@ -706,7 +706,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/lPOSw6H7YOHq2miSCrf7ZDL3ANjhJdPPDYOTujdNrVE.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 5
     },
     {
@@ -746,7 +746,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/OiwnGrxFMNiHetYEerE-UZt0L_uYNzFY7qV_CA_OxR4.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 13
     },
     {
@@ -846,7 +846,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/CoZdp5PpsTH858l212lAMeJxVJ0zxv9V-f5xC8Bvj5g.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 14
     },
     {
@@ -876,7 +876,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/fpnESbYqe5GyZmaVVYe-SEu7tE0Kxh_HZyVigzvLjks.png"
       },
-      "rarity": "Common",
+      "rarity": "Legendary",
       "elixirCost": 9
     },
     {
@@ -946,7 +946,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/XeQXcrUu59C52DslyZVwCnbi4yamID-WxfVZLShgZmE.png"
       },
-      "rarity": "Epi",
+      "rarity": "Legendary",
       "elixirCost": 9
     },
     {
@@ -966,7 +966,7 @@
       "iconUrls": {
         "medium": "https://api-assets.clashroyale.com/cards/300/GITl06sa2nGRLPvboyXbGEv5E3I-wAwn1Eqa5esggbc.png"
       },
-      "rarity": "Rare",
+      "rarity": "Legendary",
       "elixirCost": 5
     },
     {
