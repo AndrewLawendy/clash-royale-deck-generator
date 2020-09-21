@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {
   passCards, passTempCards, passAllCards, togglePopup,
 } from '../actions/actions';
-import { classList, groupByProp } from '../helpers/helpers';
+import { getCards, classList, groupByProp } from '../helpers/helpers';
 
 import Card from './Card';
 import Tabs from './Tabs';
@@ -40,12 +40,9 @@ class CustomDeck extends Component {
     document.getElementById('deck-popup').play();
     passTemp([]);
     if (!allCards.length) {
-      fetch('http://www.clashapi.xyz/api/cards')
-        .then((res) => res.json())
-        .then((res) => {
-          const groupByRarity = groupByProp(res, 'rarity');
-          getAll(groupByRarity);
-        });
+      const cards = getCards();
+      const groupByRarity = groupByProp(cards, 'rarity');
+      getAll(groupByRarity);
     }
   }
 
@@ -82,7 +79,7 @@ class CustomDeck extends Component {
         {tempCards.length ? (
           <p>
             {`You chose ${tempCards.length} card(s): `}
-            {tempCards.map((card, index) => <span key={card._id}>{`${index ? ',' : ''} ${card.name}/${card.elixirCost}(${card.rarity})`}</span>)}
+            {tempCards.map((card, index) => <span key={card.id}>{`${index ? ',' : ''} ${card.name}/${card.elixirCost}(${card.rarity})`}</span>)}
           </p>
         ) : <p>Click on the cards to build your deck!</p>}
         <Tabs tabs={['Common', 'Rare', 'Epi', 'Legendary']}>

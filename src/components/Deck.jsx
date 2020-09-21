@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 
+import { getCard } from '../helpers/helpers';
 import { passCards, togglePopup } from '../actions/actions';
 
 import Card from './Card';
@@ -31,11 +32,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class Deck extends Component {
-  static async asyncFetch(url) {
-    const response = await fetch(url).then((res) => res.json());
-    return response;
-  }
-
   constructor(props) {
     super(props);
     this.followingDeck = this.followingDeck.bind(this);
@@ -71,17 +67,14 @@ class Deck extends Component {
 
   generateCustomDeck(ids) {
     const { gen } = this.props;
-    const cardsPromises = ids.map((id) => {
-      const res = Deck.asyncFetch(`http://www.clashapi.xyz/api/cards/${id}`);
-      return res;
-    });
-    Promise.all(cardsPromises).then((cards) => gen(cards));
+    const cards = ids.map((id) => getCard(id));
+    gen(cards);
   }
 
   render() {
     const { filteredDeck, openPopup } = this.props;
     const { deckRotationX, deckRotationY, reflectionX } = this.state;
-    const filteredQueryString = filteredDeck.map((card) => card._id).join(',');
+    const filteredQueryString = filteredDeck.map((card) => card.id).join(',');
     const deckRotation = {
       transform: `rotateX(${deckRotationX}deg)
        rotateY(${deckRotationY}deg)`,

@@ -6,24 +6,11 @@ import elixirPng from '../assets/elixir.png';
 function Card(props) {
   const { card } = props;
 
-  const checkLevel = (rarity) => {
-    switch (rarity) {
-      case 'Common':
-        return 1;
-      case 'Rare':
-        return 3;
-      case 'Epic':
-        return 6;
-      default:
-        return 9;
-    }
-  };
-
   return (
     <span>
       <img
         className="card-img"
-        src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
+        src={card.iconUrls.medium}
         alt={card.name}
       />
       <span className="card-elixir-cost">
@@ -31,7 +18,7 @@ function Card(props) {
         <span>{card.elixirCost}</span>
       </span>
       <span className="card-lvl text-center text-border">
-        {`Level ${checkLevel(card.rarity)}`}
+        {`Level ${card.maxLevel}`}
       </span>
     </span>
   );

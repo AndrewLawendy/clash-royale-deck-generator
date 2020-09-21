@@ -9,7 +9,7 @@ function CardInfo(props) {
       <h2>Card Info</h2>
       <img
         className="card-img"
-        src={`http://www.clashapi.xyz/images/cards/${card.idName}.png`}
+        src={card.iconUrls.medium}
         alt={card.name}
       />
       <div className="card-description">

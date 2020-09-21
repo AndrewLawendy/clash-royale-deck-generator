@@ -1,3 +1,23 @@
+import Cards from '../api-locals/cards.json';
+
+export const getCards = () => Cards.items;
+
+export const getCard = (id) => Cards.items.find(
+  (card) => card.id == id,
+);
+
+export const getRandomCards = () => {
+  const shuffled = [...Cards.items];
+
+  shuffled.forEach((_item, idx) => {
+    // eslint-disable-next-line no-bitwise
+    const j = ~~(Math.random() * shuffled.length);
+    [shuffled[idx], shuffled[j]] = [shuffled[j], shuffled[idx]];
+  });
+
+  return shuffled.slice(0, 8);
+};
+
 export const classList = (...classes) => classes
   .filter((item) => !!item)
   .join(' ');

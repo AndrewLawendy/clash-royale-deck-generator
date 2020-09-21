@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CustomDeck from './CustomDeck';
 
+import { getRandomCards } from '../helpers/helpers';
 import { passCards, togglePopup } from '../actions/actions';
 
 const mapStateToProps = (state) => {
@@ -26,11 +27,8 @@ function DeckBtnCtrls(props) {
   const generateRandomDeck = () => {
     document.getElementById('gen-deck').play();
     const { gen } = props;
-    fetch('http://www.clashapi.xyz/api/random-deck')
-      .then((res) => res.json())
-      .then((res) => {
-        gen(res);
-      });
+    const cards = getRandomCards();
+    gen(cards);
   };
 
   const genShareableLink = () => {
